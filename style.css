@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* ROOT VARIABLES */ 
+:root {
+    --nav-bg-color: rgb(33, 48, 48);
+    --bg-color: rgb(80, 116, 79);
+    --second-bg-color: rgb(123, 174, 127);
+    --third-bg-color: rgb(154, 193, 158);
+    --main-color: rgb(115, 149, 111);
+    --white-color: rgb(237, 247, 233);
+    --tab-list-color: rgb(59, 85, 58);
+}
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    font-family: "WDXL Lubrifont JP N", sans-serif;
+}
+
+/* SELECTION AND SCROLLBAR */
+::selection {
+    background: var(--main-color);
+    color: var(--bg-color);
+}
+
+::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--main-color);
+    border-radius: 1rem;
+}
+
+::placeholder {
+    color: var(--white-color);
+}
+
+/* BASE STYLES */
+html { font-size: 65%; }
+
+body {
+    color: var(--white-color);
+    background: rgb(80, 116, 79);
+    overflow: hidden;
+}
+
+p {
+    font-size: 2rem;
+}
+
+/* NAVIGATION */
+.nav {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50rem;
+    padding: 2rem 0;
+    background: var(--nav-bg-color);
+    border-radius: 5rem;
+    z-index: 100;
+}
+
+.nav-list {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.nav-list li {
+    position: relative;
+    display: flex;
+    font-size: 3rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.nav-list li:hover,
+.nav-list li.active {
+    color: var(--main-color);
+}
+
+/* TOOLTIP */
+.tooltip {
+    position: absolute;
+    top: -4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.3rem 1rem;
+    background: var(--main-color);
+    border-radius: 0.4rem;
+    font-size: 1.6rem;
+    color: var(--white-color);
+    font-weight: 500;
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.nav-list li:hover .tooltip,
+.sci a:hover .tooltip, 
+.portfolio-item:hover .work-info {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* CONTAINER */
+.container {
+    width: 100vw;
+    height: 100vh;
+    perspective: 1500px;
+    perspective-origin: 50%;
+}
+
+/* 3D BOX */
+.box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transform-origin: 50% 50% -50vw;
+    transform: rotateY(0deg);
+}
+
+.section {
+     position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    padding: 0 10%;
+
+    display: none;
+}
+
+.section.contact.action-contact {
+    transition-delay: 1.5s;
+}
+
+.section {
+    visibility: hidden;
+}
+
+.section.active {
+    visibility: visible;
+     display: block;
+}
