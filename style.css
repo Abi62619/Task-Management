@@ -20,7 +20,7 @@
     text-decoration: none;
     border: none;
     outline: none;
-    font-family: "WDXL Lubrifont JP N", sans-serif;
+    font-family: 'Sour Gummy', cursive;
 }
 
 /* SELECTION AND SCROLLBAR */
@@ -53,6 +53,10 @@ body {
 
 p {
     font-size: 2rem;
+}
+
+h1 {
+    font-size: 4rem; 
 }
 
 /* NAVIGATION */
@@ -150,4 +154,177 @@ p {
 .section.active {
     visibility: visible;
      display: block;
+}
+
+/* BUTTONS */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.4rem 3.2rem;
+    background: var(--main-color);
+    border-radius: 5rem;
+    box-shadow: 0 0 20px var(--main-color);
+    font-size: 1.6rem;
+    color: var(--bg-color);
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    box-shadow: 0 0 10px var(--main-color);
+}
+
+/* SOCIAL BUTTONS */
+.btn-sci {
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+    margin-top: 3rem;
+}
+
+.btn-sci .sci a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border: 2px solid var(--main-color);
+    border-radius: 50%;
+    font-size: 2rem;
+    color: var(--main-color);
+    transition: 0.3s;
+}
+
+.btn-sci .sci a:hover {
+    background: var(--main-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 15px var(--main-color);
+}
+
+/*TITLES*/
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* pushes them apart */
+    align-items: center;            /* keeps them level */
+    padding: 1rem 2rem;
+    z-index: 1000;
+}
+
+.title {
+    margin: 0;
+}
+
+.due-date {
+    margin: 0;
+}
+
+/*BUTTONS*/
+.buttons {
+    position: absolute;
+    top: 40%;                  /* center vertically */
+    left: 3rem;                /* move slightly right */
+    transform: translateY(-50%); /* adjust for exact vertical centering */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5rem;
+    color: var(--tab-list-color);
+}
+
+.buttons a {
+    background-color: var(--tab-list-color);
+    color: var(--white-color);              /* text color */
+    border: 2px solid var(--tab-list-color);
+    padding: 1rem 2rem;                     /* bigger buttons */
+    font-size: 2rem;                      /* bigger text */
+    border-radius: 12px;                    /* slightly bigger rounding */
+    text-decoration: none;                  /* removes underline */
+    transition: 0.3s;
+}
+
+.buttons a:hover {
+    background-color: var(--tab-list-color);
+    color: var(--third-bg-color);
+    border-color: var(--third-bg-color);
+}
+
+/*To Do List*/
+.to-do {
+    width: 100%;
+    max-width: 540px;
+    background: var(--second-bg-color);
+    margin: 100px 0 20px 6rem;
+    padding: 20px 30px 70px;
+    border-radius: 10px;
+}
+
+.to-do-title {
+    font-size: 3rem;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--third-bg-color);
+    border-radius: 30px;
+    padding-left: 20px;
+    margin-bottom: 25px;
+}
+
+input {
+    flex: 1; 
+    border: none; 
+    outline: none;
+    background: transparent;
+    padding: 10px;
+    font-size: 15px;
+}
+
+button {
+    border: none; 
+    outline: none;
+    padding: 16px 20px;
+    background: var(--main-color);
+    color: var(--nav-bg-color);
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 40px;
+}
+
+ul li {
+    list-style: none;
+    font-size: 15px;
+    padding: 10px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.delete-btn {
+    color: var(--nav-bg-color);
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0 10px;
+    font-size: 18px;
+}
+
+.delete-btn:hover {
+    color: rgb(165, 89, 89);
+}
+
+.task-counter {
+    position: fixed;       
+    top: 10rem;            
+    right: 2rem;           
+    font-size: 2rem;
+    color: var(--white-color);
+    background-color: rgba(0, 0, 0, 0.3); 
+    padding: 0.5rem 1rem;  
+    border-radius: 0.5rem; 
+    z-index: 1000;         
 }

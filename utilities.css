@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* ROOT VARIABLES */ 
+:root {
+    --nav-bg-color: rgb(33, 48, 48);
+    --bg-color: rgb(80, 116, 79);
+    --second-bg-color: rgb(123, 174, 127);
+    --third-bg-color: rgb(154, 193, 158);
+    --main-color: rgb(115, 149, 111);
+    --white-color: rgb(237, 247, 233);
+    --tab-list-color: rgb(59, 85, 58);
+
+    --main-bg: var(--bg-color);
+    --container-bg: var(--white-color);
+    --btn-color: var(--main-color);
+    --btn-hover-color: #4ba08b;
+    --alert-red-bg: rgb(252, 179, 179);
+    --alert-red-color: red;
+    --text-color: black;
+    --box-shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    font-family: 'Sour Gummy', cursive;
+}
+
+/* BODY */
+body {
+    color: var(--text-color);
+    background-color: var(--main-bg);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* HEADINGS */
+h1 {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: var(--white-color);
+    font-family: 'Sour Gummy', cursive;
+    font-size: 3rem;
+}
+
+h2 {
+    color: var(--text-color);
+}
+
+/* CONTAINER */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--container-bg);
+    width: 70%;
+    padding: 20px;
+    margin-top: 50px;
+    border-radius: 5px;
+    box-shadow: 1px 6px 12px var(--box-shadow);
+}
+
+/* TITLE */
+.title {
+    margin: 30px 0 40px 0;
+}
+
+/* FILTERS AND TASKS */
+.filter{
+    margin: 30px 0 10px 0;
+    display: flex;
+    gap: 40px;
+    padding: 4px;
+}
+
+.status-filter{
+    display: flex;
+    text-align: left;
+    gap:2px;
+    margin: 10px 180px -10px 0;
+}
+
+.sorting-filter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0 -10px 0;
+}
+
+.tasks-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+th{
+    padding: 10px;
+    width: 150px;
+    background-color: #4B4E6D;
+    color: aliceblue;
+}
+
+td{
+    padding: 10px;
+    border: 1px solid #000;
+    text-align: center;
+}
+
+.task-name-input{
+    width:460px;
+}
+
+.add-tasks-btn{
+    width: 70px;
+}
+
+.task-name-input,
+.task-due-date,
+.priority-input,
+.add-tasks-btn{
+    height: 25px;
+}
+
+/* BACK BUTTON */
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--main-color);
+    color: var(--white-color);
+    padding: 1rem 1rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    transition: 0.3s;
+    margin-bottom: 2rem;
+    position: fixed;   
+    top: 20px;         
+    left: 5px;
+    z-index: 1000;  
+}
+
+.back-button i {
+    font-size: 2rem;
+}
+
+.back-button:hover {
+    background-color: var(--second-bg-color);
+    cursor: pointer;
+}
+
+/* BUTTONS */
+.btn {
+    padding: 1rem 2rem;
+    font-weight: 700;
+    background-color: var(--btn-color);
+    color: var(--container-bg);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 6px 12px rgba(154, 154, 154, 0.1);
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: var(--btn-hover-color);
+}
+
+.btn.active-section {
+    background-color: var(--btn-hover-color);
+    color: var(--container-bg);
+}
+
+/* ALERTS */
+.alert-red {
+    color: var(--alert-red-color);
+    background-color: var(--alert-red-bg);
+    height: 20px;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+/* HIDDEN ELEMENTS */
+.d-none {
+    display: none;
+}
+
+/* PARAGRAPHS */
+p {
+    background-color: rgb(255, 0, 0);
+    color: rgb(232, 197, 197);
+    text-transform: capitalize;
+    font-size: smaller;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+/* GENERIC BUTTONS */
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+
+.tasks-list table td:last-child {
+    display: none; /* hides the Actions column */
+}
