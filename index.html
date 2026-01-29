@@ -112,59 +112,26 @@
             </section>
                 
             <section class="section game">
-                <div class="top-bar">
-                    <h1>Game</h1>
-                    <h1>Due Date: 05/06/2026</h1>
-                </div>
-                <div class="tasks-p">
-                    <p>Total Tasks: <span id="taskAmount">0</span></p>
-                    <p>Tasks Completed: <span id="tasksCompleted">0</span></p>
-
-                </div>
-
-            <!-- Input Section -->
-                <div class="input-section">
-                    <input type="text" id="taskInput" placeholder="Enter task...">
-
-                    <input type="date" id="timeInput">
-
-                    <select id="priorityInput">
-                        <option value="Low">Low</option>
-                        <option value="Medium">Medium</option>
-                        <option value="High">High</option>
-                    </select>
-
-                    <button id="addTaskBtn">Add Task</button>
-                </div>
-
-                <!-- Task Table -->
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Task</th>
-                            <th>Time Needed</th> <!-- NEW -->
-                            <th>Priority</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="taskTableBody"></tbody>
-                </table>
-
+                <h1 class="title-home">Game</h1>
                 <div class="game-buttons">
-                    <a href="https://drive.google.com/drive/folders/198LohTPjSrD8s2r524kJqEpzHWul11ar">Docs</a>
                     <a href="https://github.com/Abi62619/ThiefOfLondon">Github</a>
                 </div>
-            </section>
+                
+                <div class="devlog-box">
+                    <input type="text" id="devlog-title" placeholder="Entry title (optional)">
+                    <textarea id="devlog-text" placeholder="What did I work on today?"></textarea>
+                    <button id="add-devlog">Add Entry</button>
 
-            <section class="section threeD-animation">
-                <h1 class="title-home">3D Animation Project</h1>
-                <div class="dissertation-buttons">
-                    <a href="https://drive.google.com/drive/folders/1hPCFgtCOC_IPNDyYoZ08gE5dIG3KgFQI">Folder</a>
+                    <ul id="devlog-list"></ul>
                 </div>
+
                 
-                
+
             </section>
 
+            <section class="section three-d-animation">
+
+            </section>
             <section class="section portfolio">
                 <h2>portfolio</h2>
             </section>
@@ -173,7 +140,7 @@
                 <h1 class="title-home">Disseration</h1>
                 <div class="dissertation-buttons">
                     <a href="https://docs.google.com/document/d/1F6R7u4e2qRxBK1SAdYxhGFHEBx8VqEdMt_Ow7SGK3n4/edit?tab=t.52yqxrg7v0mq#heading=h.rpyn9rmk2ufx">Disseration</a>
-                <a href="https://docs.google.com/spreadsheets/d/1FZNkd5EaSvtcDxb1sOpcBCBypBHwqfKT30g-vUxANx4/edit?gid=270297306#gid=270297306">House Points</a>
+                    <a href="https://docs.google.com/spreadsheets/d/1FZNkd5EaSvtcDxb1sOpcBCBypBHwqfKT30g-vUxANx4/edit?gid=270297306#gid=270297306">House Points</a>
                 </div>
                 
                 <div class="content">
@@ -230,5 +197,7 @@
     <script src="java.js"></script>
     <script src="todo.js"></script>
     <script src="animation.js"></script>
+    <script src="game.js"></script>
+    <script src="devlog.js"></script>
 </body>
 </html>
