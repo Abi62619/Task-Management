@@ -123,7 +123,7 @@ p {
 
 /* CONTAINER */
 .container {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     perspective: 1500px;
     perspective-origin: 50%;
@@ -144,7 +144,7 @@ p {
     width: 100%;
     height: 100%;
     background: var(--bg-color);
-    padding: 0 10%;
+    padding: 0;
 
     display: none;
 }
@@ -225,8 +225,9 @@ p {
     margin: 0;
 }
 
-.title-home {
-    font-size: clamp(3rem, 6vw, 5rem);
+.title-home{
+    text-align: center;
+    font-size: 7rem;
 }
 
 .due-date {
@@ -290,14 +291,15 @@ p {
 /*Calender*/
 
 .calender {
-    width: min(90%, 380px);
-    height: auto; 
-    display: flex;
+    width: min(700px);   /* bigger overall */
+    padding: 20px;            /* more breathing room */
+    border-radius: 14px;
+    height: 500px; 
+    align-self: flex-end; 
     flex-direction: column;
-    padding: 10px;
     background: var(--third-bg-color);
-    border-radius: 10px;
     box-shadow: 0 0 10px var(--third-bg-color);
+    margin-left: 5%;
 }
 
 .header {
@@ -330,7 +332,7 @@ p {
     padding: 5px;
     color: var(--white-color);
     font-weight: 500;
-    font-size: 2rem;
+    font-size: 3rem;
 }
 
 .dates {
@@ -341,7 +343,7 @@ p {
 .date {
     text-align: center;
     padding: 10px 0;
-    font-size: 2rem;
+    font-size: 3rem;
 }
 
 .date.inactive {
@@ -354,7 +356,7 @@ p {
 }
 
 .monthYear {
-    font-size: 3rem;
+    font-size: 4rem;
 }
 
 .header button {
@@ -382,9 +384,11 @@ p {
 /*Timeline*/ 
 
 .timeline-title {
-    text-align: center;
-    margin-top: 6rem;
-    font-size: clamp(2.5rem, 4vw, 4rem);
+    position: absolute;
+    top: 55px;
+    right: 250px;
+    font-size: 4rem;
+    font-weight: 200;
 }
 
 .timeline {
@@ -393,6 +397,15 @@ p {
     padding: 25px; 
     display: grid;
     color: var(--white-color);
+    width: min(700px);   /* bigger overall */
+    padding: 20px;            /* more breathing room */
+    border-radius: 14px;
+    height: 500px; 
+    align-self: flex-end; 
+    flex-direction: column;
+    background: var(--third-bg-color);
+    box-shadow: 0 0 10px var(--third-bg-color);
+    margin-left: 5%;
 }
 
 .timeline-text {
