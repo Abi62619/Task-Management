@@ -288,13 +288,35 @@ p {
     transition: 0.3s;
 }
 
+.dissertation-buttons {
+    position: absolute;
+    top: 70%;
+    left: 85%;
+    transform: translate(-50%, -50%); /* centers perfectly */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    color: var(--tab-list-color);
+}
+
+.dissertation-buttons a {
+    background-color: var(--tab-list-color);
+    color: var(--white-color);              /* text color */
+    border: 2px solid var(--tab-list-color);
+    padding: 1rem 2rem;                     /* bigger buttons */
+    font-size: 2.5rem;                      /* bigger text */
+    border-radius: 12px;                    /* slightly bigger rounding */
+    text-decoration: none;                  /* removes underline */
+}
+
 /*Calender*/
 
 .calender {
-    width: min(700px);   /* bigger overall */
+    width: min(450px);   /* bigger overall */
     padding: 20px;            /* more breathing room */
     border-radius: 14px;
-    height: 500px; 
+    height: 400px; 
     align-self: flex-end; 
     flex-direction: column;
     background: var(--third-bg-color);
@@ -332,7 +354,7 @@ p {
     padding: 5px;
     color: var(--white-color);
     font-weight: 500;
-    font-size: 3rem;
+    font-size: 1.5rem;
 }
 
 .dates {
@@ -343,7 +365,7 @@ p {
 .date {
     text-align: center;
     padding: 10px 0;
-    font-size: 3rem;
+    font-size: 1.5rem;
 }
 
 .date.inactive {
@@ -356,7 +378,7 @@ p {
 }
 
 .monthYear {
-    font-size: 4rem;
+    font-size: 2rem;
 }
 
 .header button {
@@ -384,11 +406,9 @@ p {
 /*Timeline*/ 
 
 .timeline-title {
-    position: absolute;
-    top: 55px;
-    right: 250px;
     font-size: 4rem;
-    font-weight: 200;
+    text-align: center;
+    margin-bottom: 1.5rem;
 }
 
 .timeline {
@@ -397,24 +417,24 @@ p {
     padding: 25px; 
     display: grid;
     color: var(--white-color);
-    width: min(700px);   /* bigger overall */
+    width: min(450px);   /* bigger overall */
     padding: 20px;            /* more breathing room */
     border-radius: 14px;
-    height: 500px; 
-    align-self: flex-end; 
+    height: 400px; 
     flex-direction: column;
     background: var(--third-bg-color);
     box-shadow: 0 0 10px var(--third-bg-color);
-    margin-left: 5%;
+    margin-left: 60%;
+    position: absolute; 
+    top: 15%;
 }
 
 .timeline-text {
-    position: absolute;
-    top: 120px; 
-    right: -10px; 
     display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 3.5rem;   
+    grid-template-columns: 1fr auto;
+    row-gap: 2rem;
+    column-gap: 3rem;
+    align-items: center;
 }
 
 .timeline-text-header {
@@ -422,7 +442,8 @@ p {
 }
 
 .timeline-text-text {
-    font-weight: 200;
+    font-size: 1.4rem;
+    text-align: right;
 }
 
 /*Task Manager*/ 
