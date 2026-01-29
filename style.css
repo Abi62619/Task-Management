@@ -43,7 +43,9 @@
 }
 
 /* BASE STYLES */
-html { font-size: 65%; }
+html { 
+    font-size: clamp(55%, 1vw + 50%, 65%);
+}
 
 body {
     color: var(--white-color);
@@ -55,12 +57,12 @@ body {
     justify-content: center;
 }
 
-p {
-    font-size: 2rem;
+h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
 }
 
-h1 {
-    font-size: 4rem; 
+p {
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
 }
 
 /* NAVIGATION */
@@ -69,11 +71,11 @@ h1 {
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
-    width: 50rem;
     padding: 2rem 0;
     background: var(--nav-bg-color);
     border-radius: 5rem;
     z-index: 100;
+    width: min(90%, 50rem);
 }
 
 .nav-list {
@@ -223,9 +225,8 @@ h1 {
     margin: 0;
 }
 
-.title-home{
-    text-align: center;
-    font-size: 5rem;
+.title-home {
+    font-size: clamp(3rem, 6vw, 5rem);
 }
 
 .due-date {
@@ -249,8 +250,9 @@ h1 {
     background-color: var(--tab-list-color);
     color: var(--white-color);              /* text color */
     border: 2px solid var(--tab-list-color);
-    padding: 1rem 2rem;                     /* bigger buttons */
-    font-size: 3rem;                      /* bigger text */
+    font-size: clamp(1.6rem, 3vw, 3rem);
+    padding: clamp(0.8rem, 2vw, 1.4rem)
+             clamp(1.5rem, 4vw, 3rem);
     border-radius: 12px;                    /* slightly bigger rounding */
     text-decoration: none;                  /* removes underline */
     transition: 0.3s;
@@ -288,7 +290,7 @@ h1 {
 /*Calender*/
 
 .calender {
-    width: 380px;
+    width: min(90%, 380px);
     height: auto; 
     display: flex;
     flex-direction: column;
@@ -380,11 +382,9 @@ h1 {
 /*Timeline*/ 
 
 .timeline-title {
-    position: absolute;
-    top: 55px;
-    right: 250px;
-    font-size: 4rem;
-    font-weight: 200;
+    text-align: center;
+    margin-top: 6rem;
+    font-size: clamp(2.5rem, 4vw, 4rem);
 }
 
 .timeline {
@@ -459,4 +459,30 @@ th, td {
     border-radius: 5px;
     color: var(--white-color);
     cursor: pointer;
+}
+
+@media (max-width: 768px) {
+
+    body {
+        overflow-y: auto;
+    }
+
+    .nav {
+        bottom: 1rem;
+        padding: 1.2rem 0;
+    }
+
+    .buttons {
+        gap: 2rem;
+    }
+
+    .timeline-text {
+        position: static;
+        grid-template-columns: 1fr;
+        margin-top: 2rem;
+    }
+
+    table {
+        width: 100%;
+    }
 }
