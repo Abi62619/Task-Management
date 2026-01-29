@@ -6,6 +6,7 @@
     <title>Task Management</title>
 
     <link rel="stylesheet" href="style.css">
+    
 
     <link href='https://cdn.boxicons.com/3.0.4/fonts/basic/boxicons.min.css' rel='stylesheet'>
     <link href='https://cdn.boxicons.com/3.0.4/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>
@@ -51,24 +52,95 @@
     <div class="container">
         <div class="box">
             <section class="section home active">
-                <h1>Home</h1>
+                <h1 class="title-home">Home</h1>
+                <div class="buttons">
+                    <a href="https://drive.google.com/drive/my-drive">Drive</a>
+                    <a href="https://github.com/dashboard">Github</a>
+                    <a href="https://moodle.accesstomusic.ac.uk/local/guru_plugin/eilpdash.php">Moodle</a>
+                </div>
+                <div class="calender">
+                    <div class="header">
+                        <button id="prevBtn">
+                            <i class='bx  bx-chevron-left'></i> 
+                        </button>
+                        <div class="monthYear" id="monthYear"></div>
+                        <button id="nextBtn">
+                            <i class='bx  bx-chevron-right'></i> 
+                        </button>
+                    </div>
+                    <div class="days">
+                        <div class="day">Mon</div>
+                        <div class="day">Tue</div>
+                        <div class="day">Wed</div>
+                        <div class="day">Thur</div>
+                        <div class="day">Fri</div>
+                        <div class="day">Sat</div>
+                        <div class="day">Sun</div>
+                    </div>
+                    <div class="dates" id="dates"></div>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-title">Timeline</div>
+                    <div class="timeline-text">
+                        <h2 class="timeline-text-header">Portfolio Project</h2>
+                        <p class="timeline-text-text">06/02/2026</p>
+                        <h2 class="timeline-text-header">Research Disseration</h2>
+                        <p class="timeline-text-text">06/03/2026</p>
+                        <h2 class="timeline-text-header">Games Pitching Project</h2>
+                        <p class="timeline-text-text">03/04/2026</p>
+                        <h2 class="timeline-text-header">Career Development Plan</h2>
+                        <p class="timeline-text-text">01/05/2026</p>
+                        <h2 class="timeline-text-header">3D Animation Project</h2>
+                        <p class="timeline-text-text">22/05/2026</p>
+                        <h2 class="timeline-text-header">Create A Game</h2>
+                        <p class="timeline-text-text">05/06/2026</p>
+                    </div>
+                </div>
             </section>
                 
             <section class="section game">
                 <div class="top-bar">
-                    <h1 class="title">Game</h1>
-                    <h1 class="due-date">Due Date: 05/06/2026</h1>
-                </div>           
-                <div class="buttons">
-                    <a href="table.html" class="btn">Table</a>
-                    <a href="https://github.com/Abi62619/ThiefOfLondon" class="btn">GitHub</a>
-                    <a href="https://drive.google.com/drive/folders/198LohTPjSrD8s2r524kJqEpzHWul11ar">Docs</a>
-                </div>   
+                    <h1>Game</h1>
+                    <h1>Due Date: 05/06/2026</h1>
+                </div>
+                <div class="tasks-p">
+                    <p>Total Tasks: <span id="taskAmount">0</span></p>
+                    <p>Tasks Completed: <span id="tasksCompleted">0</span></p>
 
-                <div class="task-counter">
-                    I have <span id="taskAmount">0</span> tasks in table.
                 </div>
 
+            <!-- Input Section -->
+                <div class="input-section">
+                    <input type="text" id="taskInput" placeholder="Enter task...">
+
+                    <input type="date" id="timeInput">
+
+                    <select id="priorityInput">
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+
+                    <button id="addTaskBtn">Add Task</button>
+                </div>
+
+                <!-- Task Table -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Task</th>
+                            <th>Time Needed</th> <!-- NEW -->
+                            <th>Priority</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="taskTableBody"></tbody>
+                </table>
+
+                <div class="game-buttons">
+                    <a href="https://drive.google.com/drive/folders/198LohTPjSrD8s2r524kJqEpzHWul11ar">Docs</a>
+                    <a href="https://github.com/Abi62619/ThiefOfLondon">Github</a>
+                </div>
             </section>
 
             <section class="section threeD-animation">

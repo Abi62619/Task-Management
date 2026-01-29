@@ -17,226 +17,199 @@ navs.forEach((item, idx) => {
     });
 });
 
-// ---------------- SELECT ELEMENTS ----------------
-const alertMessage = document.querySelector('.alert');
-const noneInputsContainer = document.querySelector('.none-inputs');
 
-const addTask = document.getElementById("addTask");
-const clearAllButton = document.querySelector(".clear-btn");
+//----------------- CALENDAR ------------------
 
-const dateInput = document.getElementById("taskDueDate");
-const addTaskName = document.getElementById("taskName");
-const prioritySelect = document.getElementById("priority");
+document.addEventListener("DOMContentLoaded", () => {
+    const monthYearElement = document.getElementById('monthYear');
+    const datesElement = document.getElementById('dates');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
 
-const allTasksButton = document.getElementById("allTasks");
-const activeTasksButton = document.getElementById("activeTasks");
-const completedTasksButton = document.getElementById("completedTasks");
+    if (!monthYearElement || !datesElement) return;
 
-const taskList = document.getElementById("tasksListing");
-const tableRows = taskList ? taskList.getElementsByTagName("tr") : [];
+    let currentDate = new Date();
 
-// ---------------- ADD TASK ----------------
-if (addTask) {
-    addTask.addEventListener("click", () => {
-        if (validateTaskInput()) {
-            addTaskToTable();
-            noneInputsContainer.style.display = "block";
-        } else {
-            alertMessage.classList.remove("d-none");
-            setTimeout(() => alertMessage.classList.add("d-none"), 2500);
-        }
-    });
-}
+    function updateCalendar() {
+        const currentYear = currentDate.getFullYear();
+        const currentMonth = currentDate.getMonth();
 
-// ---------------- CLEAR TASKS ----------------
-if (clearAllButton) {
-    clearAllButton.addEventListener("click", clearAllTasks);
-}
+        const firstDay = new Date(currentYear, currentMonth, 1);
+        const lastDay = new Date(currentYear, currentMonth + 1, 0);
 
-// ---------------- VALIDATION ----------------
-let taskName, dueDate, priority;
+        const totalDays = lastDay.getDate();
 
-function validateTaskInput() {
-    taskName = addTaskName.value.trim();
-    dueDate = dateInput.value;
-    priority = prioritySelect.value;
-    return taskName !== "" && dueDate !== "" && priority !== "";
-}
+        // Convert JS Sunday start → Monday start
+        const firstDayIndex = (firstDay.getDay() + 6) % 7;
+        const lastDayIndex = (lastDay.getDay() + 6) % 7;
 
-// ---------------- CREATE TASK ----------------
-function addTaskToTable() {
-    const taskRow = createTaskRow(taskName, dueDate, priority);
-    taskList.appendChild(taskRow);
-
-    saveTasksToMemory();
-    updateTaskAmount();
-
-    addTaskName.value = "";
-    dateInput.value = "";
-    prioritySelect.selectedIndex = 0;
-
-    clearAllButton.classList.toggle("d-none", taskList.getElementsByTagName("tr").length <= 1);
-    if (allTasksButton) allTasksButton.click();
-}
-
-function createTaskRow(taskName, dueDate, priority) {
-    const taskRow = document.createElement("tr");
-
-    const statusCell = document.createElement("td");
-    statusCell.textContent = "Active";
-    statusCell.style.fontWeight = "bold";
-
-    const taskDescription = document.createElement("td");
-    taskDescription.textContent = taskName;
-
-    const priorityCell = document.createElement("td");
-    priorityCell.textContent = priority;
-    if (priority === "High Priority") {
-        priorityCell.style.textDecoration = "underline";
-        priorityCell.style.color = "#ff0000";
-    } else if (priority === "Low Priority") {
-        priorityCell.style.textDecoration = "underline";
-        priorityCell.style.color = "#FFD700";
-    }
-
-    const dueDateCell = document.createElement("td");
-    dueDateCell.textContent = new Date(dueDate).toLocaleDateString("en-US");
-
-    // --- Buttons ---
-    const editButton = document.createElement("button");
-    editButton.innerHTML = 'Edit';
-    editButton.addEventListener("click", () => {
-        taskDescription.setAttribute("contenteditable", "true");
-        taskDescription.focus();
-    });
-
-    taskDescription.addEventListener("blur", () => {
-        taskDescription.removeAttribute("contenteditable");
-        saveTasksToMemory();
-        updateTaskAmount();
-    });
-
-    const completeButton = document.createElement("button");
-    completeButton.innerHTML = '✔';
-    completeButton.addEventListener("click", () => {
-        statusCell.textContent = "Completed";
-        taskDescription.style.textDecoration = "line-through";
-        taskDescription.style.fontWeight = "bold";
-        taskDescription.style.color = "green";
-        saveTasksToMemory();
-        updateTaskAmount();
-    });
-
-    const deleteButton = document.createElement("button");
-    deleteButton.innerHTML = '🗑';
-    deleteButton.addEventListener("click", () => {
-        taskRow.remove();
-        saveTasksToMemory();
-        updateTaskAmount();
-        if (taskList.getElementsByTagName("tr").length <= 1) {
-            noneInputsContainer.style.display = "none";
-            clearAllButton.classList.add("d-none");
-        }
-    });
-
-    const actionsCell = document.createElement("td");
-    actionsCell.appendChild(editButton);
-    actionsCell.appendChild(completeButton);
-    actionsCell.appendChild(deleteButton);
-
-    taskRow.appendChild(statusCell);
-    taskRow.appendChild(taskDescription);
-    taskRow.appendChild(priorityCell);
-    taskRow.appendChild(dueDateCell);
-    taskRow.appendChild(actionsCell);
-
-    return taskRow;
-}
-
-// ---------------- CLEAR FUNCTION ----------------
-function clearAllTasks() {
-    const rows = taskList.getElementsByTagName("tr");
-    for (let i = rows.length - 1; i > 0; i--) rows[i].remove();
-    noneInputsContainer.style.display = "none";
-    clearAllButton.classList.add("d-none");
-    localStorage.removeItem("tasks");
-    updateTaskAmount();
-}
-
-// ---------------- MEMORY ----------------
-function saveTasksToMemory() {
-    const rows = taskList.getElementsByTagName("tr");
-    const tasksArray = [];
-    for (let i = 1; i < rows.length; i++) {
-        const cells = rows[i].getElementsByTagName("td");
-        tasksArray.push({
-            status: cells[0].textContent,
-            name: cells[1].textContent,
-            priority: cells[2].textContent,
-            dueDate: cells[3].textContent
+        const monthYearString = currentDate.toLocaleString('default', {
+            month: 'long',
+            year: 'numeric'
         });
-    }
-    localStorage.setItem("tasks", JSON.stringify(tasksArray));
-}
 
-// ---------------- LOAD MEMORY ----------------
-window.addEventListener("load", () => {
-    if (!taskList) return;
+        monthYearElement.textContent = monthYearString;
 
-    const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    savedTasks.forEach(task => {
-        const taskRow = createTaskRow(task.name, task.dueDate, task.priority);
-        const statusCell = taskRow.querySelector("td");
-        const taskDescription = taskRow.querySelector("td:nth-child(2)");
+        let datesHTML = '';
 
-        if (task.status === "Completed") {
-            statusCell.textContent = "Completed";
-            taskDescription.style.textDecoration = "line-through";
-            taskDescription.style.fontWeight = "bold";
-            taskDescription.style.color = "green";
+        // Previous month's ending days
+        const prevLastDay = new Date(currentYear, currentMonth, 0).getDate();
+        for (let i = firstDayIndex; i > 0; i--) {
+            datesHTML += `<div class="date inactive">${prevLastDay - i + 1}</div>`;
         }
 
-        taskList.appendChild(taskRow);
+        // Current month days
+        const today = new Date();
+        today.setHours(0,0,0,0); // remove time
+
+        for (let i = 1; i <= totalDays; i++) {
+            const date = new Date(currentYear, currentMonth, i);
+            date.setHours(0,0,0,0);
+
+            const isToday = date.getTime() === today.getTime();
+            const activeClass = isToday ? 'active' : '';
+
+            datesHTML += `<div class="date ${activeClass}">${i}</div>`;
+        }
+
+        // Next month's starting days
+        const remaining = 42 - (firstDayIndex + totalDays);
+        for (let i = 1; i <= remaining; i++) {
+            datesHTML += `<div class="date inactive">${i}</div>`;
+        }
+
+        datesElement.innerHTML = datesHTML;
+    }
+
+    // Buttons
+    prevBtn.addEventListener('click', () => {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        updateCalendar();
     });
 
-    noneInputsContainer.style.display = savedTasks.length ? "block" : "none";
-    clearAllButton.classList.toggle("d-none", savedTasks.length === 0);
-    updateTaskAmount();
+    nextBtn.addEventListener('click', () => {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        updateCalendar();
+    });
+
+    // 🔥 THIS WAS MISSING
+    updateCalendar();
 });
 
-// ---------------- FILTERS ----------------
-if (allTasksButton) allTasksButton.addEventListener("click", showAllTasks);
-if (activeTasksButton) activeTasksButton.addEventListener("click", showActiveTasks);
-if (completedTasksButton) completedTasksButton.addEventListener("click", showCompletedTasks);
 
-function showAllTasks() {
-    for (let i = 1; i < tableRows.length; i++) tableRows[i].removeAttribute("hidden");
-}
-function showActiveTasks() {
-    for (let i = 1; i < tableRows.length; i++) {
-        tableRows[i].querySelector("td").textContent === "Active" ?
-            tableRows[i].removeAttribute("hidden") :
-            tableRows[i].setAttribute("hidden", "true");
-    }
-}
-function showCompletedTasks() {
-    for (let i = 1; i < tableRows.length; i++) {
-        tableRows[i].querySelector("td").textContent === "Completed" ?
-            tableRows[i].removeAttribute("hidden") :
-            tableRows[i].setAttribute("hidden", "true");
-    }
+//------------- Task Manager ---------------
+const taskInput = document.getElementById("taskInput");
+const timeInput = document.getElementById("timeInput"); // NEW
+const priorityInput = document.getElementById("priorityInput");
+const addTaskBtn = document.getElementById("addTaskBtn");
+const taskTableBody = document.getElementById("taskTableBody");
+const taskAmountSpan = document.getElementById("taskAmount");
+
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+function renderTasks() {
+    taskTableBody.innerHTML = "";
+
+    tasks.forEach((task, index) => {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${task.name}</td>
+            <td>${task.time}</td>
+            <td>${task.priority}</td>
+            <td>
+                <input type="checkbox" ${task.completed ? "checked" : ""} onchange="toggleCompleted(${index}, this)">
+            </td>
+            <td>
+                <button class="delete-btn" onclick="deleteTask(${index})">
+                    Delete
+                </button>
+            </td>
+        `;
+
+        // Add strikethrough style if completed
+        if (task.completed) {
+            row.style.textDecoration = "line-through";
+            row.style.opacity = "0.6";
+        }
+
+        taskTableBody.appendChild(row);
+    });
+
+    updateTaskAmount();
+    updateTasksCompleted(); // NEW
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-// ---------------- TASK AMOUNT ----------------
+function toggleCompleted(index, checkbox) {
+    tasks[index].completed = checkbox.checked;
+    renderTasks();
+}
+
+
+// Add task
+addTaskBtn.addEventListener("click", () => {
+    const taskName = taskInput.value.trim();
+    const timeNeeded = timeInput.value.trim(); // NEW
+    const priority = priorityInput.value;
+
+    if (taskName === "" || timeNeeded === "") {
+        alert("Please enter task AND time needed!");
+        return;
+    }
+
+    tasks.push({
+        name: taskName,
+        time: timeNeeded,   // NEW
+        priority: priority
+    });
+
+    taskInput.value = "";
+    timeInput.value = ""; // clear time field
+
+    renderTasks();
+});
+
+// Delete task
+function deleteTask(index) {
+    tasks.splice(index, 1);
+    renderTasks();
+}
+
+// Update counter
 function updateTaskAmount() {
-    const taskAmountSpan = document.getElementById("taskAmount");
-    if (!taskAmountSpan) return;
-    const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    taskAmountSpan.textContent = savedTasks.length;
+    taskAmountSpan.textContent = tasks.length;
 }
 
-// Run task counter on page load
-window.addEventListener("load", updateTaskAmount);
+const tasksCompletedSpan = document.getElementById("tasksCompleted");
 
-// Update counter if localStorage changes (another tab)
-window.addEventListener("storage", updateTaskAmount);
+function updateTasksCompleted() {
+    const completedCount = tasks.filter(task => task.completed).length;
+    tasksCompletedSpan.textContent = completedCount;
+}
+
+// Load saved tasks
+renderTasks();
+
+//------------- Time ------------------
+addTaskBtn.addEventListener("click", () => {
+    const taskName = taskInput.value.trim();
+    const timeNeeded = timeInput.value; // now a date or month string
+    const priority = priorityInput.value;
+
+    if (taskName === "" || timeNeeded === "") {
+        alert("Please enter task AND time needed!");
+        return;
+    }
+
+    tasks.push({
+        name: taskName,
+        time: timeNeeded, 
+        priority: priority
+    });
+
+    taskInput.value = "";
+    timeInput.value = ""; // clear after adding
+
+    renderTasks();
+});
