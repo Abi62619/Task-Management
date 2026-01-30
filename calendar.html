@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="calendar.css">
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href='https://cdn.boxicons.com/3.0.4/fonts/basic/boxicons.min.css' rel='stylesheet'>
+    <link href='https://cdn.boxicons.com/3.0.4/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>
+
+
+    <title>Document</title>
+</head>
+<body>
+    <aside class="sidebar">
+        <!-- Sidebar Header-->
+        <header class="sidebar-header">
+            <button class="toggler">
+                <span class="material-symbols-outlined">
+                    chevron_left
+                </span>
+            </button>
+        </header>
+
+        <nav class="sidebar-nav">
+            <!-- Primary Top Nav-->
+            <ul class="nav-list primary-nav">
+                <li class="nav-item">
+                    <a href="dashboard.html" class="nav-link">
+                        <span class="material-symbols-outlined">dashboard</span>
+                        <span class="nav-label">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="calendar.html" class="nav-link">
+                        <span class="material-symbols-outlined">calendar_today</span>
+                        <span class="nav-label">Calendar</span>
+                    </a>
+                </li>
+            
+                <li class="nav-item">
+                    <a href="game.html" class="nav-link">
+                        <span class="material-symbols-outlined">sports_esports</span>
+                        <span class="nav-label">Game</span>
+                    </a>
+                </li>
+           
+                <li class="nav-item">
+                    <a href="3D-animation.html" class="nav-link">
+                        <span class="material-symbols-outlined">animation</span>
+                        <span class="nav-label">3D Animation</span>
+                    </a>
+                </li>
+            
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="material-symbols-outlined">work</span>
+                        <span class="nav-label">Portfolio</span>
+                    </a>
+                </li>
+            
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="material-symbols-outlined">article</span>
+                        <span class="nav-label">Dissertation</span>
+                    </a>
+                </li>
+            
+                <li class="nav-item">
+                    <a href="portfolio.html" class="nav-link">
+                        <span class="material-symbols-outlined">business_center</span>
+                        <span class="nav-label">Career Development</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="calendar">
+                            <div class="header">
+                                <button id="prevBtn">
+                                    <i class='bx  bx-chevron-left'></i> 
+                                </button>
+                                <div class="monthYear" id="monthYear"></div>
+                                <button id="nextBtn">
+                                    <i class='bx  bx-chevron-right'></i> 
+                                </button>
+                            </div>
+                            <div class="days">
+                                <div class="day">Mon</div>
+                                <div class="day">Tue</div>
+                                <div class="day">Wed</div>
+                                <div class="day">Thur</div>
+                                <div class="day">Fri</div>
+                                <div class="day">Sat</div>
+                                <div class="day">Sun</div>
+                            </div>
+                            <div class="dates" id="dates"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="task-panel" id="taskPanel">
+        <h2 id="selectedDateTitle">Tasks</h2>
+
+        <input 
+            type="text" 
+            id="taskInput" 
+            placeholder="Add a task..." 
+        />
+
+        <button id="addTaskBtn">Add</button>
+
+        <ul id="taskList"></ul>
+    </div>
+
+    <script src="calendar.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

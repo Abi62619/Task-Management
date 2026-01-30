@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* ROOT VARIABLES */ 
+:root {
+    --nav-bg-color: rgb(33, 48, 48);
+    --bg-color: rgb(80, 116, 79);
+    --second-bg-color: rgb(123, 174, 127);
+    --third-bg-color: rgb(154, 193, 158);
+    --main-color: rgb(115, 149, 111);
+    --white-color: rgb(237, 247, 233);
+    --tab-list-color: rgb(59, 85, 58);
+}
+
+* {
+    font-family: "Sour Gummy", sans-serif;
+    margin: 0;
+    padding: 0; 
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--bg-color);
+}
+
+.sidebar {
+    width: 270px;
+    position: fixed;
+    margin: 16px;
+    border-radius: 16px;
+    background: var(--nav-bg-color);
+    height: calc(100vh - 16px);
+    transition: 0.4s ease;
+}
+
+.sidebar.collapsed {
+    width: 85px;
+}
+
+.sidebar-header {
+    position: relative;
+    display: flex;
+    padding: 25px 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sidebar-header  {
+    position: relative;
+    display: flex;
+    width: 46px;
+    height: 46px;
+    display: block;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.sidebar-nav .toggler {
+    position: absolute;
+    right: 20px;
+    height: 35px;
+    width: 35px;
+    border: none;
+    color: var(--nav-bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 8px;
+    background: var(--white-color);
+    transition: 0.4s ease;
+}
+
+.sidebar-nav .toggler:hover {
+    color: var(--third-bg-color);
+}
+
+.sidebar-nav .toggler span {
+    font-size: 2rem;
+}
+
+.sidebar.collapsed .sidebar-header .toggler span {
+    transform: rotate(180deg);
+}
+
+.sidebar-nav .nav-list {
+    list-style: none;
+    display: flex;
+    gap: 4px; 
+    padding: 0 15px;
+    flex-direction: column;
+    transform: translateY(15px);
+}
+
+.sidebar-nav .nav-link {
+    color: var(--white-color);
+    display: flex;
+    gap: 12px;
+    border-radius: 8px;
+    align-items: center;
+    padding: 12px 15px; 
+    text-decoration: none;
+    transition: 0.4s ease;
+}
+
+.sidebar-nav .nav-link:hover  {
+    background: var(--third-bg-color);
+}
+
+.sidebar-header .toggler {
+    transform: translate( 4px, 5px);
+    color: var(--nav-bg-color);
+    padding: 1px 1px;
+}
+
+.sidebar.collapsed .sidebar-header .toggler {
+    transform: translate( 4px, 5px);
+}
+
+.sidebar.collapsed .sidebar-nav .nav-link {
+    transition: 0.4s ease;
+}
+
+.sidebar.collapsed .sidebar-nav .nav-link .nav-label {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sidebar-nav .secondary-nav {
+    position: absolute;
+    bottom: 30px; 
+    width: 100%;
+}
