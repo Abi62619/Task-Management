@@ -131,3 +131,61 @@ body {
     bottom: 30px; 
     width: 100%;
 }
+
+/*Timeline*/ 
+
+.timeline-title {
+    position: absolute;
+    top: -90px;
+    left: -10px;
+    font-size: 4rem;
+    color: var(--white-color);
+}
+
+.timeline {
+    margin: 0 auto;
+    max-width: 750px;
+    padding: 25px; 
+    display: grid;
+    color: var(--white-color);
+}
+
+.timeline-text {
+    position: absolute;
+    top: 90px; 
+    left: 400px; 
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 2rem;   
+}
+
+.timeline-text-header {
+    font-size: 2rem;
+    color: var(--white-color);
+}
+
+.timeline-text-text {
+    font-size: 1.5rem;
+    color: var(--white-color);
+}
+
+.countdown {
+    font-size: 1.3rem;
+    color: var(--white-color);
+}
+
+.dev-log {
+    position: fixed;
+    bottom: 35px;
+    left: 55%;
+    transform: translateX(-50%);
+}
+
+.dev-log a {
+    color: var(--white-color);
+    text-decoration: none;
+    font-size: 3rem;
+    background: var(--third-bg-color);
+    padding: 12px 24px;
+    border-radius: 12px;
+}

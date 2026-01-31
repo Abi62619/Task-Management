@@ -1,0 +1,332 @@
+@import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* ROOT VARIABLES */ 
+:root {
+    --nav-bg-color: rgb(33, 48, 48);
+    --bg-color: rgb(80, 116, 79);
+    --second-bg-color: rgb(123, 174, 127);
+    --third-bg-color: rgb(154, 193, 158);
+    --main-color: rgb(115, 149, 111);
+    --white-color: rgb(237, 247, 233);
+    --tab-list-color: rgb(59, 85, 58);
+}
+
+* {
+    font-family: "Sour Gummy", sans-serif;
+    margin: 0;
+    padding: 0; 
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--bg-color);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    min-height: 100vh;
+}
+
+header {
+    background-color: var(--nav-bg-color);
+    padding: 20px;
+    text-align: center;
+    color: var(--third-bg-color);
+}
+
+.card {
+    background-color: var(--third-bg-color);
+    margin: 20px auto;
+    padding: 3rem 2rem;
+    border-radius: 10px;
+    box-shadow: var(--nav-bg-color);
+    color: var(--second-bg-color);
+    width: 100%;
+    max-width: 500px;
+}
+
+h1 {
+    color: var(--white-color);
+    font-size: 28px;
+    margin: 0 0 1.2em 0;
+}
+
+#animationtaskForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+h3 {
+    margin-top: 0;
+}
+
+.task-input {
+    display: flex;
+    align-items: center;
+}
+
+#taskInput {
+    flex: 1;
+    padding: 15px 12px;
+    margin-right: 10px;
+    border: none;
+    background-color: var(--white-color); 
+    color: var(--second-bg-color);
+    border-radius: 5px 0 0 5px;
+    transition: background-color 0.3s ease;
+}
+
+#taskInput::placeholder {
+    color: var(--tab-list-color);
+}
+
+#taskInput:focus {
+    outline: none;
+    background-color: var(--white-color);
+}
+
+
+button[type="submit"] {
+    background-color: var(--third-bg-color);
+    background-image: var(--third-bg-color);
+    color: var(--white-color);
+    padding: 15px 7px;
+    border: none;
+    border-radius: 0 7px 7px 0;
+    margin-left: -15px;
+    cursor: pointer;
+    width: 5rem;
+}
+
+
+button:hover {
+    background-color: var(--second-bg-color);
+    background-image: var(--second-bg-color);
+    color: var(--white-color);
+}
+
+#taskContainer {
+    width: 100%;
+    max-width: 1100px;
+    margin-top: 2rem;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.taskManager {
+    margin-left: 300px; /* sidebar width */
+    padding: 2rem;
+    width: calc(100% - 300px);
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.taskCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    background-color: var(--white-color);
+    padding: 16px;
+    top: 1rem;
+    width: 250px;
+    min-height: 175px;
+    border-radius: 4px;
+    transition: box-shadow 0.3s ease;
+}
+
+.taskCard.completed {
+    background: var(--second-bg-color);
+}
+
+.taskCard.pending {
+    background: var(--third-bg-color);
+}
+
+.taskCard:hover {
+    box-shadow: var(--nav-bg-color);
+}
+
+.taskCard p {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--white-color);
+    word-wrap: break-word;
+}
+
+.taskCard .status {
+    margin-top: 10px;
+    font-size: 14px;
+    font-size: 1.1em;
+    font-weight: 100;
+    color: var(--white-color);
+    letter-spacing: 1px;
+}
+
+/* =========================== */
+/*    Task button styling      */
+/* =========================== */
+
+.button-box {
+    background: var(--white-color);
+    border-radius: 20px;
+    outline: 0;
+    border: none;
+    box-shadow: var(--tab-list-color);
+    transition: all 0.5s ease-in-out;
+    margin-top: 1rem;
+    padding: 12px 10px;
+}
+
+.button-box:hover {
+    background: var(--second-bg-color);
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;;
+}
+
+.green {
+    color: var(--nav-bg-color);
+}
+
+.red {
+    color: #ff0026;
+}
+
+.button-box span {
+    font-size: 0.9em;
+    font-weight: 100;
+    letter-spacing: 3px;
+    padding-top: 5px;
+    /* color: #FCFCFC; */
+    padding-bottom: 5px;
+    text-transform: uppercase;
+}
+
+/* =========================== */
+/* Confirmation popup styling */
+/* =========================== */
+
+.overlay {
+    position: relative;
+}
+
+.overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.confirm {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    min-width: 280px;
+    max-width: 500px;
+    height: auto;
+    border-radius: 10px;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--white-color);
+    background: var(--third-bg-color);
+    animation: fade 0.5s ease 1 forwards;
+}
+
+/* =========================== */
+/* Overlay effect              */
+/* =========================== */
+
+.overlay::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+}
+
+/* =========================== */
+/* Confirmation modal          */
+/* =========================== */
+
+.confirm {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 420px;
+    background: var(--third-bg-color);
+    border-radius: 10px;
+    z-index: 1000;
+    animation: fade 0.4s ease forwards;
+}
+
+.confirm h1 {
+    font-size: 1.2rem;
+    margin: 1.5rem 1rem 0.5rem;
+}
+
+.confirm p {
+    margin: 0 2rem 4rem;
+    color: var(--white-color);
+}
+
+.confirm button {
+    position: absolute;
+    bottom: 0;
+    width: 50%;
+    height: 3rem;
+    border: none;
+    background: transparent;
+    color: var(--white-color);
+    cursor: pointer;
+}
+
+.confirm button:nth-of-type(1) {
+    left: 0;
+    border-top: 1px solid var(--white-color);
+    border-right: 1px solid var(--white-color);
+}
+
+.confirm button:nth-of-type(2) {
+    right: 0;
+    border-top: 1px solid var(--white-color);
+}
+
+.table {
+    margin-left: 300px; /* sidebar width + gap */
+    padding: 20px;
+    transition: margin-left 0.4s ease;
+}
+
+.sidebar.collapsed ~ .table {
+    margin-left: 115px; /* collapsed sidebar width + gap */
+}
