@@ -39,6 +39,7 @@ p {
 }
 
 .dev-log {
+    margin-left: 400px;
     width: 600px;
     padding: 40px 20px;
 }
