@@ -11,31 +11,23 @@
     --tab-list-color: rgb(59, 85, 58);
 }
 
-/* RESET */
 * {
+    font-family: "Sour Gummy", sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 0; 
     box-sizing: border-box;
-    list-style: none;
-    text-decoration: none;
-    border: none;
-    outline: none;
-    font-family: 'Sour Gummy', cursive;
 }
 
-body {
-    color: var(--white-color);
-    background: rgb(80, 116, 79);
-    overflow: hidden;
-    min-height: 100vh;
-    background: var(--bg-color);
-    display: block;   /* ← IMPORTANT */
-    overflow-x: hidden;
-}
+/* ===============================
+   MAIN LAYOUT FIX
+================================ */
 
 .main-content {
-    margin-left: 300px;        /* space for sidebar */
+    margin-left: 300px;
     padding: 40px;
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
     transition: 0.4s ease;
 }
 
@@ -44,20 +36,23 @@ body {
     margin-left: 120px;
 }
 
-
-/*Calender*/
+/* ===============================
+   CALENDAR FIXES
+================================ */
 
 .calendar {
-    width: min(550px);   /* bigger overall */
-    padding: 20px;            /* more breathing room */
+    width: 550px;
+    height: 550px;
+    padding: 20px;
     border-radius: 14px;
-    height: 550px; 
-    align-self: flex-end; 
-    flex-direction: column;
     background: var(--third-bg-color);
     box-shadow: 0 0 10px var(--third-bg-color);
+
+    display: flex;
+    flex-direction: column;
 }
 
+/* Calendar header */
 .header {
     display: flex;
     justify-content: space-between;
@@ -65,45 +60,64 @@ body {
     padding: 10px;
 }
 
-.header-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Header buttons (prev / next) */
+.header button {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--main-color);
     border: none;
-    border-radius: 50px;
-    background: var(--third-bg-color);
     cursor: pointer;
-    width: 40px;
-    height: 40px; 
-    box-shadow: 0 0 4px var(--nav-bg-color);
+
+    display: grid;
+    place-items: center;
 }
 
+.header button i {
+    font-size: 1.8rem;
+    color: var(--nav-bg-color);
+    line-height: 1;
+}
+
+/* Month text */
+.monthYear {
+    font-size: 3rem;
+    color: var(--white-color);
+}
+
+/* Days row */
 .days {
     display: grid;
-    grid-template-columns: repeat(7,1fr);
-}
-
-.day{
-    text-align: center;
-    padding: 5px;
-    color: var(--white-color);
-    font-weight: 500;
-    font-size: 2.2rem;
-}
-
-.dates {
-    display: grid; 
     grid-template-columns: repeat(7, 1fr);
+    margin-top: 10px;
+}
+
+.day {
+    text-align: center;
+    padding: 6px 0;
+    font-size: 2rem;
+    color: var(--white-color);
+}
+
+/* Dates grid */
+.dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-top: 10px;
+    color: var(--white-color);
 }
 
 .date {
     text-align: center;
-    padding: 10px 0;
-    font-size: 2.2rem;
+    padding: 12px 0;
+    font-size: 1.8rem;
+    cursor: pointer;
+    position: relative;
 }
 
 .date.inactive {
     opacity: 0.3;
+    cursor: default;
 }
 
 .date.active {
@@ -111,85 +125,7 @@ body {
     border-radius: 50%;
 }
 
-.monthYear {
-    font-size: 2rem;
-}
-
-.header button {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: var(--main-color);
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;              /* removes offset */
-    cursor: pointer;
-}
-
-.header button i {
-    font-size: 2.6rem;
-    color: var(--nav-bg-color);
-    line-height: 1;          /* THIS centers it vertically */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.task-panel {
-    position: fixed;
-    top: 0;
-    right: -350px;
-    width: 350px;
-    height: 100vh;
-    background: var(--second-bg-color);
-    padding: 20px;
-    box-shadow: -4px 0 10px rgba(0,0,0,0.2);
-    transition: 0.4s ease;
-    overflow-y: auto;
-}
-
-.task-panel.open {
-    right: 0;
-}
-
-.task-panel h2 {
-    margin-bottom: 15px;
-}
-
-.task-panel input {
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
-    border-radius: 6px;
-    margin-bottom: 10px;
-}
-
-.task-panel button {
-    width: 100%;
-    padding: 10px;
-    background: var(--main-color);
-    color: white;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-#taskList {
-    margin-top: 20px;
-}
-
-#taskList li {
-    background: var(--third-bg-color);
-    padding: 8px;
-    border-radius: 6px;
-    margin-bottom: 8px;
-}
-
-.date {
-    position: relative;
-}
-
+/* Task dot */
 .dot {
     width: 6px;
     height: 6px;
@@ -201,22 +137,108 @@ body {
     transform: translateX(-50%);
 }
 
-.task-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: var(--third-bg-color);
-    padding: 8px;
-    border-radius: 6px;
-    margin-bottom: 8px;
+/* ===============================
+   TASK PANEL FIXES
+================================ */
+
+.task-panel {
+    position: fixed;
+    top: 0;
+    right: -350px;
+    width: 350px;
+    height: 100vh;
+    background: var(--second-bg-color);
+    padding: 20px;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
+    transition: 0.4s ease;
+    overflow-y: auto;
+    z-index: 100;
 }
 
+.task-panel.open {
+    right: 0;
+}
+
+.task-panel h2 {
+    margin-bottom: 15px;
+    font-size: 1.6rem;
+    color: var(--white-color);
+}
+
+/* Task input */
+.task-panel input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+/* Add task button  */
+#addTaskBtn {
+    width: 100%;
+    padding: 10px;
+    background: var(--main-color);
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+
+/* Task list */
+#taskList {
+    margin-top: 10px;
+}
+
+/* ===============================
+   TASK ITEM ALIGNMENT FIX
+================================ */
+
+.task-item {
+    display: flex;
+    align-items: center;          /* vertical alignment */
+    justify-content: space-between;
+
+    background: var(--third-bg-color);
+    padding: 14px 16px;           /* taller row */
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Left side: checkbox + text */
+.task-item input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    margin: 0;
+    accent-color: var(--main-color);
+    flex-shrink: 0;
+}
+
+/* Task text */
+.task-item span {
+    flex: 1;
+    margin-left: 14px;
+    color: var(--white-color);
+    font-size: 1.4rem;            /* BIGGER TEXT */
+    line-height: 1;               /* aligns with checkbox */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Delete button */
 .delete-task {
     background: transparent;
-    color: var(--nav-bg-color);
-    font-size: 1.2rem;
+    border: none;
+    margin-left: 14px;
+
+    font-size: 1.6rem;
+    line-height: 1;
     cursor: pointer;
-    padding: 0 6px;
+    color: var(--nav-bg-color);
+
+    flex-shrink: 0;
 }
 
 .delete-task:hover {
