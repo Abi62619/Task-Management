@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dissertation Task Manager</title>
+    <title>Dev Log</title>
 
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="dissertation.css">
+    <link rel="stylesheet" href="dev.log.css">
 
   
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -86,27 +86,20 @@
         </nav>
     </aside>
 
-    <section class="taskManager">
-        <header class="card">
-            <h1>Task Manager</h1>
-            <form id="dissertationTaskForm">
-                <input type="text" id="taskInput" placeholder="Add a task...">
-                <button type="submit">Add Task</button>
-            </form>
-        </header>
+    <main class="dev-log">
+        <div class="dev-log-box">
+            <h1>Dev Log</h1>
 
-        <section id="taskContainer"></section>
-    </section>
+            <textarea id="logInput" placeholder="Write your dev log here..."></textarea>
 
-    <div class="confirm">
-        <h1>Confirm your action</h1>
-        <p>Do I <strong>really</strong> want to delete this task?</p>
-        <button class="dissertationCancel">Cancel</buttocn>
-        <button autofocus class="dissertationConfirmed">Confirm</button>
-    </div>
+            <button id="saveLog">Save</button>
 
+            <h2>Saved Entries</h2>
+            <div id="logEntries"></div>
+        </div>
+    </main>
 
-  <script src="script.js"></script>
-  <script src="dissertation.js"></script>
+    <script src="dev-log.js"></script>
+
 </body>
 </html>
