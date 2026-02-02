@@ -200,3 +200,25 @@ body {
     left: 50%;
     transform: translateX(-50%);
 }
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--third-bg-color);
+    padding: 8px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+.delete-task {
+    background: transparent;
+    color: var(--nav-bg-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0 6px;
+}
+
+.delete-task:hover {
+    color: red;
+}

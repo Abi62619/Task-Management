@@ -92,6 +92,10 @@ const taskInput = document.getElementById("taskInput");
 const addTaskBtn = document.getElementById("addTaskBtn");
 const selectedDateTitle = document.getElementById("selectedDateTitle");
 
+function generateId() {
+    return Date.now().toString(36) + Math.random().toString(36).slice(2);
+}
+
 function openTasks(date) {
     selectedDateKey = date.toISOString().split("T")[0];
     selectedDateTitle.textContent = `Tasks for ${selectedDateKey}`;
@@ -101,22 +105,81 @@ function openTasks(date) {
 
 function loadTasks() {
     taskList.innerHTML = "";
-    const tasks = JSON.parse(localStorage.getItem(selectedDateKey)) || [];
+
+    let tasks = JSON.parse(localStorage.getItem(selectedDateKey)) || [];
+
+    // 🔧 Upgrade old tasks automatically
+    tasks = tasks.map(task => ({
+        id: task.id || generateId(),
+        text: task.text,
+        completed: task.completed || false,
+        createdAt: task.createdAt || Date.now()
+    }));
+
+    saveTasks(tasks);
 
     tasks.forEach(task => {
         const li = document.createElement("li");
-        li.textContent = task.text;
+        li.classList.add("task-item");
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = task.completed;
+
+        const span = document.createElement("span");
+        span.textContent = task.text;
+
+        if (task.completed) {
+            span.style.textDecoration = "line-through";
+            span.style.opacity = "0.6";
+        }
+
+        checkbox.addEventListener("change", () => {
+            task.completed = checkbox.checked;
+            saveTasks(tasks);
+            loadTasks(); // re-render styles
+        });
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "✕";
+        deleteBtn.classList.add("delete-task");
+
+        deleteBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const updated = tasks.filter(t => t.id !== task.id);
+            saveTasks(updated);
+            loadTasks();
+            updateCalendar();
+        });
+
+        li.appendChild(checkbox);
+        li.appendChild(span);
+        li.appendChild(deleteBtn);
         taskList.appendChild(li);
     });
+}
+
+function saveTasks(tasks) {
+    if (tasks.length === 0) {
+        localStorage.removeItem(selectedDateKey);
+    } else {
+        localStorage.setItem(selectedDateKey, JSON.stringify(tasks));
+    }
 }
 
 addTaskBtn.addEventListener("click", () => {
     if (!taskInput.value || !selectedDateKey) return;
 
     const tasks = JSON.parse(localStorage.getItem(selectedDateKey)) || [];
-    tasks.push({ text: taskInput.value, createdAt: Date.now() });
 
-    localStorage.setItem(selectedDateKey, JSON.stringify(tasks));
+    tasks.push({
+        id: generateId(),
+        text: taskInput.value,
+        completed: false,
+        createdAt: Date.now()
+    });
+
+    saveTasks(tasks);
     taskInput.value = "";
 
     loadTasks();
