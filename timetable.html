@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Animation Task Manager</title>
+    <title>TimeTable</title>
+
 
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="3D-animation.css">
+    <link rel="stylesheet" href="timetable.css">
 
   
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,7 +35,12 @@
                         <span class="nav-label">Dashboard</span>
                     </a>
                 </li>
-                
+                <li class="nav-item">
+                    <a href="timetable.html" class="nav-link"> 
+                        <span class="material-symbols-outlined">table</span>
+                        <span class="nav-label">Table</span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="calendar.html" class="nav-link">
                         <span class="material-symbols-outlined">calendar_today</span>
@@ -86,28 +92,5 @@
             </ul>
         </nav>
     </aside>
-
-    <section class="taskManager">
-        <header class="card">
-            <h1>Task Manager</h1>
-            <form id="animationTaskForm">
-                <input type="text" id="taskInput" placeholder="Add a task...">
-                <button type="submit">Add Task</button>
-            </form>
-        </header>
-
-        <section id="taskContainer"></section>
-    </section>
-
-    <div class="confirm">
-        <h1>Confirm your action</h1>
-        <p>Do I <strong>really</strong> want to delete this task?</p>
-        <button class="animationCancel">Cancel</button>
-        <button autofocus class="animationConfirmed">Confirm</button>
-    </div>
-
-
-  <script src="script.js"></script>
-  <script src="3D-animation.js"></script>
 </body>
 </html>

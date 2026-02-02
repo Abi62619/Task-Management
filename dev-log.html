@@ -34,6 +34,7 @@
                         <span class="nav-label">Dashboard</span>
                     </a>
                 </li>
+                
                 <li class="nav-item">
                     <a href="calendar.html" class="nav-link">
                         <span class="material-symbols-outlined">calendar_today</span>
@@ -87,17 +88,22 @@
     </aside>
 
     <main class="dev-log">
-        <div class="dev-log-box">
-            <h1>Dev Log</h1>
+    <div class="dev-log-box">
+        <h1>Dev Log</h1>
 
-            <textarea id="logInput" placeholder="Write your dev log here..."></textarea>
+        <textarea id="logInput" placeholder="Write your dev log here..."></textarea>
 
-            <button id="saveLog">Save</button>
+        
+        <input type="file" id="imageInput" accept="image/*">
+        <img id="previewImage" style="display:none; max-width: 100%; border-radius: 12px; margin-top: 10px;" />
 
-            <h2>Saved Entries</h2>
-            <div id="logEntries"></div>
-        </div>
-    </main>
+        <button id="saveLog">Save</button>
+
+        <h2>Saved Entries</h2>
+        <div id="logEntries"></div>
+    </div>
+</main>
+
 
     <script src="dev-log.js"></script>
 
